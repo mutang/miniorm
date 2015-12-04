@@ -31,14 +31,24 @@ select gt/gte/lt/lte
     s = user_model.get_by_map({"id$gt": 1, "name$like":"john"}, select_cols=["id", 'name'])
 
 -----------
-select order by/pagination/
+select order by
 -----------
-    s = user_model.get_by_map({"name$like":"john"}, start=0,limit=20, and_or="and", order_by=["id desc", "name"])
+    s = user_model.get_by_map({"name$like":"john"}, order_by=["id desc", "name"])
+
+-----------
+pagination/
+-----------
+    s = user_model.get_by_map({"name$like":"john"}, start=0,limit=20, and_or="and")
 
 -----------
 count distinct
 -----------
     usercont = user_model.count_by_map({"id$gt": 1, "name$like":"john"}, distinct="pid")
+
+-----------
+group by
+-----------
+    usercont = user_model.count_by_map({"id$gt": 1, "name$like":"john"}, group_by="name")
 
 -----------
 insert
@@ -72,6 +82,8 @@ delete
     uid = 1
     user_model.delete_by_id(uid)
     user_model.delete_by_map({"id":uid})
+    user_model.delete_all()
+    user_model.truncate()
 
 -----------
 columns
