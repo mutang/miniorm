@@ -18,12 +18,22 @@ model define
 -----------
 select
 -----------
-    s = user_model.get_by_map({"id": u.id}, select_cols=["id", 'name'])
+    s = user_model.get_by_map({"pid": 123}, select_cols=["id", 'name'])
+
+-----------
+select one
+-----------
+    s = user_model.get_one_by_map({"id": u.id}, select_cols=["id", 'name'])
 
 -----------
 select like
 -----------
     s = user_model.get_by_map({"id": u.id, "name$like":"john"}, select_cols=["id", 'name'])
+
+-----------
+select in
+-----------
+    s = user_model.get_by_map({"name$in":["john", "abc", "addd"]}, select_cols=["id", 'name'])
 
 -----------
 select search
