@@ -1,6 +1,13 @@
 Examples
 ============
 
+minimal db mapper utils for mysql
+
+-----------
+Install
+-----------
+pip install miniorm
+
 -----------
 model define
 -----------
