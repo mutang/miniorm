@@ -5,20 +5,9 @@ Examples
 -----------
 model define
 -----------
-    dbargkws = {'user': 'test',
-                'password': 'test',
-                'host': 'localhost',
-                'port': "3306",
-                'database': 'test',
-                'autocommit': False,
-                'charset': 'utf8'
-                }
-
-
+    dbargkws = {'user': 'test','password': 'test','host': 'localhost','port': "3306",'database': 'test','autocommit': False,'charset': 'utf8'}
     from miniorm import Model
-    
     user_model = Model.make("User", dbargkws, "users")  #users is db tablename
-
 
 -----------
 select
@@ -35,7 +24,6 @@ select search
 -----------
     search all name with john* and nathen*
     s = user_model.get_by_map({"id": u.id, "name$match":"john nathen"}, select_cols=["id", 'name'])
-
 
 -----------
 select gt/gte/lt/lte
@@ -55,25 +43,25 @@ count distinct
 -----------
 insert
 -----------
- - by namedtuple
+    #by namedtuple
     User = namedtuple("User", ['id', 'name', 'pwd', 'email'])
     user = User(None, '1', '2', "10000003exeee@a.com")
     ins = user_model.insert(user)
 
- - by dict
+    #by dict
     user = {'name':"ww", 'pwd':"pwd", 'email': "xxx"}
     ins = user_model.insert(user)
 
 -----------
 update
 -----------
- - by namedtuple
+    #by namedtuple
     User = namedtuple("User", ['id', 'name', 'pwd', 'email'])
     user = User(1, '1', '2', "10000003exeee@a.com")
     updates, nops = user_model.update(user)
     updates, nops = user_model.update(user, where={"id":1})
 
- - by dict
+    #by dict
     user = {'id':1, 'name':"ww", 'pwd':"pwd", 'email': "xxx"}
     updates, nops = user_model.update(user)
     updates, nops = user_model.update(user, where={"id":1})
@@ -82,9 +70,7 @@ update
 delete
 -----------
     uid = 1
-
     user_model.delete_by_id(uid)
-
     user_model.delete_by_map({"id":uid})
 
 -----------
