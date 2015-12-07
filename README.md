@@ -2,6 +2,7 @@ Examples
 ============
 
 minimal db mapper utils for mysql
+python orm utils for mysql
 
 -----------
 Install
